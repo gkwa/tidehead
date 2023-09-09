@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func formatDuration(d1 time.Duration) string {
+func FormatDuration(d1 time.Duration) string {
 	const daysInMonth = 30 // Approximate value
 
 	years := d1 / (365 * 24 * time.Hour)

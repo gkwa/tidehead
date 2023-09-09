@@ -28,7 +28,7 @@ func TestFormatDuration(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.expected, func(t *testing.T) {
-			result := formatDuration(test.duration)
+			result := FormatDuration(test.duration)
 			if result != test.expected {
 				t.Errorf("Expected %s, but got %s", test.expected, result)
 			}
