@@ -2,7 +2,7 @@ package tidehead
 
 import (
 	"fmt"
-	log "log/slog"
+	"log/slog"
 	"time"
 )
 
@@ -20,9 +20,6 @@ func FormatDuration(d time.Duration) string {
 	minutes := d / time.Minute
 	d -= minutes * time.Minute
 	seconds := d / time.Second
-
-	x := fmt.Sprintf("y: %d, mo: %d, d: %d, h: %d, m: %d, s: %d", years, months, days, hours, minutes, seconds)
-	log.Debug(x)
 
 	result := ""
 
@@ -50,6 +47,8 @@ func FormatDuration(d time.Duration) string {
 			}
 		}
 	}
+
+	slog.Debug(fmt.Sprintf("y: %d, mo: %d, d: %d, h: %d, m: %d, s: %d gives %s", years, months, days, hours, minutes, seconds, result))
 
 	return result
 }
