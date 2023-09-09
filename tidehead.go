@@ -48,7 +48,23 @@ func FormatDuration(d time.Duration) string {
 		}
 	}
 
-	out := fmt.Sprintf("duration: %v, y: %d, mo: %d, d: %d, h: %d, m: %d, s: %d gives %s", d, years, months, days, hours, minutes, seconds, result)
+	out := ""
+	out += fmt.Sprintf("duration: %v", d)
+	out += ", "
+	out += fmt.Sprintf("y: %d", years)
+	out += ", "
+	out += fmt.Sprintf("mo: %d", months)
+	out += ", "
+	out += fmt.Sprintf("d: %d", days)
+	out += ", "
+	out += fmt.Sprintf("h: %d", hours)
+	out += ", "
+	out += fmt.Sprintf("m: %d", minutes)
+	out += ", "
+	out += fmt.Sprintf("m: %d", seconds)
+	out += " gives "
+	out += result
+
 	slog.Debug(out)
 
 	return result
