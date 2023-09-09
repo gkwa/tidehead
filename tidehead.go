@@ -21,7 +21,7 @@ func FormatDuration(d time.Duration) string {
 	d -= minutes * time.Minute
 	seconds := d / time.Second
 
-	x := fmt.Sprintf("y: %d, mo: %d, d: %d, h: %d, m: %d, s: %d\n", years, months, days, hours, minutes, seconds)
+	x := fmt.Sprintf("y: %d, mo: %d, d: %d, h: %d, m: %d, s: %d", years, months, days, hours, minutes, seconds)
 	log.Debug(x)
 
 	result := ""
