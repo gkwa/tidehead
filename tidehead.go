@@ -7,6 +7,8 @@ import (
 )
 
 func FormatDuration(d time.Duration) string {
+	dInput := d
+	
 	const daysInMonth = 30 // Approximate
 
 	years := d / (365 * 24 * time.Hour)
@@ -49,7 +51,7 @@ func FormatDuration(d time.Duration) string {
 	}
 
 	out := ""
-	out += fmt.Sprintf("duration: %v", d)
+	out += fmt.Sprintf("duration: %v", dInput)
 	out += ", "
 	out += fmt.Sprintf("y: %d", years)
 	out += ", "
