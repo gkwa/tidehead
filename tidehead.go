@@ -48,7 +48,8 @@ func FormatDuration(d time.Duration) string {
 		}
 	}
 
-	slog.Debug(fmt.Sprintf("duration: %v, y: %d, mo: %d, d: %d, h: %d, m: %d, s: %d gives %s", d, years, months, days, hours, minutes, seconds, result))
+	out := fmt.Sprintf("duration: %v, y: %d, mo: %d, d: %d, h: %d, m: %d, s: %d gives %s", d, years, months, days, hours, minutes, seconds, result)
+	slog.Debug(out)
 
 	return result
 }
