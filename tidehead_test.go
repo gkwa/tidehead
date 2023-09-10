@@ -21,6 +21,7 @@ func TestFormatDuration(t *testing.T) {
 		{3*365*24*time.Hour + 2*time.Hour + 15*time.Minute, "3y"},
 		{200*365*24*time.Hour + 2*time.Hour + 15*time.Minute, "200y"},
 		{32*24*time.Hour + 15*time.Minute, "1M2d"},
+		{32*24*time.Hour + 15*time.Hour, "1M2d"},
 		{2*24*time.Hour + 15*time.Minute + 17*time.Second, "2d"},
 		{3*24*time.Hour + 7*time.Hour + 59*time.Minute + 0*time.Second, "3d7h"},
 		{3*24*time.Hour + 23*time.Minute + 0*time.Second, "3d"},
