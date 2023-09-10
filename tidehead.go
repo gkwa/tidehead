@@ -23,34 +23,33 @@ func FormatDuration(d time.Duration) string {
 	d -= db.Minutes * time.Minute
 	db.Seconds = d / time.Second
 
-	result := ""
+	db.Output = ""
 
 	if db.Years > 0 {
-		result += fmt.Sprintf("%dy", db.Years)
+		db.Output += fmt.Sprintf("%dy", db.Years)
 	}
 	if db.Months > 0 {
-		result += fmt.Sprintf("%dM", db.Months)
+		db.Output += fmt.Sprintf("%dM", db.Months)
 	}
 	if db.Days > 0 {
-		result += fmt.Sprintf("%dd", db.Days)
+		db.Output += fmt.Sprintf("%dd", db.Days)
 	}
 	if db.Years == 0 {
 		if db.Hours > 0 {
-			result += fmt.Sprintf("%dh", db.Hours)
+			db.Output += fmt.Sprintf("%dh", db.Hours)
 		}
 		if db.Days == 0 {
-			if db.Minutes > 0 || result == "" {
-				result += fmt.Sprintf("%dm", db.Minutes)
+			if db.Minutes > 0 || db.Output == "" {
+				db.Output += fmt.Sprintf("%dm", db.Minutes)
 			}
 			if db.Hours == 0 {
-				if db.Seconds > 0 || result == "" {
-					result += fmt.Sprintf("%ds", db.Seconds)
+				if db.Seconds > 0 || db.Output == "" {
+					db.Output += fmt.Sprintf("%ds", db.Seconds)
 				}
 			}
 		}
 	}
-	db.Output = result
 
 	slog.Debug(db.String())
-	return result
+	return db.Output
 }
