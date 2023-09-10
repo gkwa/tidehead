@@ -50,7 +50,7 @@ func FormatDuration(d time.Duration) string {
 			db.Output += fmt.Sprintf("%dh", db.Hours)
 		}
 		if db.Days == 0 {
-			if db.Minutes > 0 || db.Output == "" {
+			if db.Minutes > 0 {
 				db.Output += fmt.Sprintf("%dm", db.Minutes)
 			}
 			if db.Hours == 0 {
