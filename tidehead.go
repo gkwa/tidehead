@@ -34,15 +34,15 @@ func FormatDuration(d time.Duration) string {
 	if db.Days > 0 {
 		result += fmt.Sprintf("%dd", db.Days)
 	}
-	if db.Years <= 0 {
+	if db.Years == 0 {
 		if db.Hours > 0 {
 			result += fmt.Sprintf("%dh", db.Hours)
 		}
-		if db.Days <= 0 {
+		if db.Days == 0 {
 			if db.Minutes > 0 || result == "" {
 				result += fmt.Sprintf("%dm", db.Minutes)
 			}
-			if db.Hours <= 0 {
+			if db.Hours == 0 {
 				if db.Seconds > 0 || result == "" {
 					result += fmt.Sprintf("%ds", db.Seconds)
 				}
