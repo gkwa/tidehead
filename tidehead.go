@@ -7,67 +7,50 @@ import (
 )
 
 func FormatDuration(d time.Duration) string {
-	dInput := d
-	
+	db := DurationBreakdown{Input: d}
+
 	const daysInMonth = 30 // Approximate
 
-	years := d / (365 * 24 * time.Hour)
-	d -= years * 365 * 24 * time.Hour
-	months := d / (daysInMonth * 24 * time.Hour)
-	d -= months * daysInMonth * 24 * time.Hour
-	days := d / (24 * time.Hour)
-	d -= days * 24 * time.Hour
-	hours := d / time.Hour
-	d -= hours * time.Hour
-	minutes := d / time.Minute
-	d -= minutes * time.Minute
-	seconds := d / time.Second
+	db.Years = d / (365 * 24 * time.Hour)
+	d -= db.Years * 365 * 24 * time.Hour
+	db.Months = d / (daysInMonth * 24 * time.Hour)
+	d -= db.Months * daysInMonth * 24 * time.Hour
+	db.Days = d / (24 * time.Hour)
+	d -= db.Days * 24 * time.Hour
+	db.Hours = d / time.Hour
+	d -= db.Hours * time.Hour
+	db.Minutes = d / time.Minute
+	d -= db.Minutes * time.Minute
+	db.Seconds = d / time.Second
 
 	result := ""
 
-	if years > 0 {
-		result += fmt.Sprintf("%dy", years)
+	if db.Years > 0 {
+		result += fmt.Sprintf("%dy", db.Years)
 	}
-	if months > 0 {
-		result += fmt.Sprintf("%dM", months)
+	if db.Months > 0 {
+		result += fmt.Sprintf("%dM", db.Months)
 	}
-	if days > 0 {
-		result += fmt.Sprintf("%dd", days)
+	if db.Days > 0 {
+		result += fmt.Sprintf("%dd", db.Days)
 	}
-	if years <= 0 {
-		if hours > 0 {
-			result += fmt.Sprintf("%dh", hours)
+	if db.Years <= 0 {
+		if db.Hours > 0 {
+			result += fmt.Sprintf("%dh", db.Hours)
 		}
-		if days <= 0 {
-			if minutes > 0 || result == "" {
-				result += fmt.Sprintf("%dm", minutes)
+		if db.Days <= 0 {
+			if db.Minutes > 0 || result == "" {
+				result += fmt.Sprintf("%dm", db.Minutes)
 			}
-			if hours <= 0 {
-				if seconds > 0 || result == "" {
-					result += fmt.Sprintf("%ds", seconds)
+			if db.Hours <= 0 {
+				if db.Seconds > 0 || result == "" {
+					result += fmt.Sprintf("%ds", db.Seconds)
 				}
 			}
 		}
 	}
+	db.Output = result
 
-	out := ""
-	out += fmt.Sprintf("duration: %v", dInput)
-	out += ", "
-	out += fmt.Sprintf("y: %d", years)
-	out += ", "
-	out += fmt.Sprintf("mo: %d", months)
-	out += ", "
-	out += fmt.Sprintf("d: %d", days)
-	out += ", "
-	out += fmt.Sprintf("h: %d", hours)
-	out += ", "
-	out += fmt.Sprintf("m: %d", minutes)
-	out += ", "
-	out += fmt.Sprintf("m: %d", seconds)
-	out += " gives "
-	out += result
-
-	slog.Debug(out)
-
+	slog.Debug(db.String())
 	return result
 }
