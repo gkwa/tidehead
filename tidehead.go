@@ -11,17 +11,28 @@ func FormatDuration(d time.Duration) string {
 
 	const daysInMonth = 30 // Approximate
 
-	db.Years = d / (365 * 24 * time.Hour)
-	d -= db.Years * 365 * 24 * time.Hour
-	db.Months = d / (daysInMonth * 24 * time.Hour)
-	d -= db.Months * daysInMonth * 24 * time.Hour
-	db.Days = d / (24 * time.Hour)
-	d -= db.Days * 24 * time.Hour
-	db.Hours = d / time.Hour
-	d -= db.Hours * time.Hour
-	db.Minutes = d / time.Minute
-	d -= db.Minutes * time.Minute
-	db.Seconds = d / time.Second
+	x := 365 * 24 * time.Hour
+	db.Years = d / x
+	d -= db.Years * x
+
+	x = daysInMonth * 24 * time.Hour
+	db.Months = d / x
+	d -= db.Months * x
+
+	x = 24 * time.Hour
+	db.Days = d / x
+	d -= db.Days * x
+
+	x = time.Hour
+	db.Hours = d / x
+	d -= db.Hours * x
+
+	x = time.Minute
+	db.Minutes = d / x
+	d -= db.Minutes * x
+
+	x = time.Second
+	db.Seconds = d / x
 
 	db.Output = ""
 

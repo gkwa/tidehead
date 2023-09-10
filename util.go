@@ -17,7 +17,7 @@ type DurationBreakdown struct {
 	Output  string
 }
 
-func (db DurationBreakdown) String() string {
+func (db *DurationBreakdown) String() string {
 	var sb strings.Builder
 
 	sb.WriteString(db.Input.String())
